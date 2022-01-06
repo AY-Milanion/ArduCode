@@ -615,6 +615,13 @@ float AR_AttitudeControl::get_throttle_out_speed(float desired_speed, bool motor
     }
 
     // final output throttle in range -1 to 1
+   if (throttle_out < 0){
+	throttle_out = -1;
+	}
+	else if (throttle_out>0){
+	throttle_out=((throttle_out*2)-1);
+	}
+   	
     return throttle_out;
 }
 

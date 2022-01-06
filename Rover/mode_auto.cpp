@@ -1,11 +1,15 @@
 #include "mode.h"
 #include "Rover.h"
+#include <AP_ServoRelayEvents/AP_ServoRelayEvents.h>
 
 #define AUTO_GUIDED_SEND_TARGET_MS 1000
+
+AP_ServoRelayEvents ServoRelayEvents;
 
 bool ModeAuto::_enter()
 {
     // fail to enter auto if no mission commands
+    
     if (mission.num_commands() <= 1) {
         gcs().send_text(MAV_SEVERITY_NOTICE, "No Mission. Can't set AUTO.");
         return false;
@@ -18,7 +22,7 @@ bool ModeAuto::_enter()
 
     // initialise waypoint speed
     g2.wp_nav.set_desired_speed_to_default();
-
+  hal.rcout->write(3, 1900);
     // other initialisation
     auto_triggered = false;
 
@@ -26,6 +30,7 @@ bool ModeAuto::_enter()
     rover.mode_guided.limit_clear();
 
     // restart mission processing
+     ServoRelayEvents.do_set_servo(3, 900);
     mission.start_or_resume();
     return true;
 }
@@ -40,6 +45,7 @@ void ModeAuto::_exit()
 
 void ModeAuto::update()
 {
+ServoRelayEvents.do_set_servo(3, 900);
     switch (_submode) {
         case Auto_WP:
         {

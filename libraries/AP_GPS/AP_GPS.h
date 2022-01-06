@@ -121,6 +121,7 @@ public:
         GPS_TYPE_EXTERNAL_AHRS = 21,
         GPS_TYPE_UAVCAN_RTK_BASE = 22,
         GPS_TYPE_UAVCAN_RTK_ROVER = 23,
+        GPS_TYPE_N2K = 24,
     };
 
     /// GPS status codes

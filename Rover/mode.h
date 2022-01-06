@@ -22,7 +22,7 @@ public:
         MANUAL       = 0,
         ACRO         = 1,
         STEERING     = 3,
-        HOLD         = 4,
+        HOLD      = 4,
         LOITER       = 5,
         FOLLOW       = 6,
         SIMPLE       = 7,
