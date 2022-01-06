@@ -405,6 +405,8 @@ bool AP_GPS::needs_uart(GPS_Type type) const
     case GPS_TYPE_UAVCAN_RTK_ROVER:
     case GPS_TYPE_MAV:
     case GPS_TYPE_MSP:
+    case GPS_TYPE_N2K:
+        return false;
     case GPS_TYPE_EXTERNAL_AHRS:
         return false;
     default:
